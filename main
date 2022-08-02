@@ -1,0 +1,41 @@
+// just a look at making islamic patterms
+// first made by eye
+// then created the points required using cossing points of the lines
+// could use these points with laser cutter
+// adjust the size with sliders
+
+// plan
+// save colours
+// write out points for laser cutting
+//
+// nice to have
+// graduated polygons, grad from a point, or use perlin noise
+
+let box = 1
+let boxLeft = 500
+let boxTop = 20
+let boxSize = 80
+let boxes = 7
+let sliders = 3
+let sliderTop = 240
+let sliderLeft = 1200
+let sliderWidth = 30
+let sliderHeight = 200
+let M = []
+let P = []
+let S = [40,94,40]
+let SIZE = [300,200,8]
+let SMAX = [300,650,10]
+let pTop = 400
+let pLeft = 600
+let pMax = 650
+let z = 0
+
+let palX = 30
+let palY = 750
+let palW = 70
+let palH = 50
+let palN = 0
+let palMax = 12
+let PAL
+let RBOW
