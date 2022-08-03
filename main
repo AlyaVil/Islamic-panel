@@ -39,3 +39,45 @@ let palN = 0
 let palMax = 12
 let PAL
 let RBOW
+
+let SHOWLINES = false
+let SHOWPOINTS = false
+let drawLines = false
+
+let WHEELDIAMETER = 300
+let WHEELY = 650
+let WHEELX = 1100
+let WHEELLAYER = 40
+
+function setup() {
+	createCanvas(windowWidth, windowHeight)
+	background(0,0,80);
+	stroke(250)
+	textSize(16);
+
+	angleMode(DEGREES)
+	makeByEye(160, 200, 15)
+	makeByNumber(1050, 200, 10)
+	
+	// set default sizes
+	for (let i=0; i<SIZE.length; i++) {
+			SIZE[i] = (S[i]*SMAX[i] / 100)
+	}
+	
+	PAL = []
+	for (let i=0; i<palMax; i++) {
+		PAL.push(color(random(255), random(255), random(255)))
+	}
+	
+	setRainbow()
+}
+
+function draw() {
+	drawBoxes(box)
+	drawPalette(palN)
+	drawSliders()
+	drawColourWheel()
+	angleMode(DEGREES)
+	drawPattern()
+}
+
