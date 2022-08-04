@@ -81,3 +81,56 @@ function draw() {
 	drawPattern()
 }
 
+function mousePressed() {
+	if (pointInBox(mouseX,mouseY, boxLeft, boxTop,  boxes*boxSize, boxSize/2)) {
+		box = int((mouseX - boxLeft)/boxSize)
+		draw12(box)
+	} else if (pointInBox(mouseX, mouseY, sliderLeft, sliderTop, sliders*sliderWidth, sliderHeight)) {
+  	let slider = int((mouseX - sliderLeft) / sliderWidth)
+		let percent = 100 - int((mouseY - sliderTop)*100/sliderHeight)
+		S[slider] = percent
+		for (let i=0; i<SIZE.length; i++) {
+			SIZE[i] = floor(1 + (S[i]*SMAX[i] / 100))
+		}
+//		println(SIZE[2])
+	} else if (pointInBox(mouseX, mouseY, sliderLeft+2*sliderWidth,sliderTop - 1.5*sliderWidth, sliderWidth, sliderWidth )) {
+		drawLines = !drawLines
+	} else if (pointInBox(mouseX, mouseY, palX, palY, palMax*(palW+4), palH)) {
+		let choice = floor((mouseX - palX)/(palW + 4))
+		palN = choice
+	} else if (pointInBox(mouseX, mouseY, WHEELX-WHEELDIAMETER/2, WHEELY-WHEELDIAMETER/2, WHEELDIAMETER, WHEELDIAMETER)) {
+		// probably on colour wheel
+		let tan = (mouseY - WHEELY)/(mouseX - WHEELX)
+		let angle = Math.atan(tan)
+		if (tan < 0) {
+			if (mouseX > WHEELX) {
+				angle += 2*PI
+			} else { 
+				angle += PI
+			}
+		} else {
+			if (mouseX < WHEELX) {
+					angle += PI
+			}
+		}
+		let n = floor(angle/(PI/6))
+		// set colour
+		let colr = RBOW[n]
+		
+		// set darkness/lightness
+		let cent = sqrt(sq(mouseY - WHEELY) + sq(mouseX - WHEELX))
+		n = floor((WHEELDIAMETER/2 - cent)/(WHEELLAYER/2))
+		// println( cent + " " + n )
+		if (n<2) {
+			// lighten
+			colr = shadeBlendConvert ( 0.3*(2-n), colr );
+		} else if (n>2) {
+			// darken
+			colr = shadeBlendConvert ( -0.1*(n-2), colr );
+		} 
+		PAL[palN] = colr
+
+	} else {
+			
+	}
+}
