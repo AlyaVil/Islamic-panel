@@ -134,3 +134,65 @@ function mousePressed() {
 			
 	}
 }
+function drawPattern() {
+	fill(PAL[0])
+	ellipse(pLeft, pTop, pMax, pMax)		// outer circle
+	noStroke()
+	fill(PAL[1])
+	ellipse(pLeft, pTop, SIZE[1])
+	
+	makePoints(pLeft, pTop, SHOWPOINTS, SHOWLINES)
+	drawFinalPolys(true, drawLines)
+	drawMidPolys(true, drawLines)
+	drawOuterPolys(true, drawLines)
+	drawInnerPolys(true, drawLines)
+}
+
+// draw palette with one selected
+function drawPalette (n) {
+	push()
+	strokeWeight(3)
+	for (let i=0; i<palMax; i++) {
+		noFill()
+		if (i == n) {
+			stroke('red')
+		} else {
+			stroke('white')
+		}
+		fill(PAL[i])
+		rect(palX+i*(palW+4), palY, palW, palH, 20)
+	}
+	pop()
+}
+
+function setRainbow() {
+	RBOW = []
+	for (var i = 0; i < 12; i++) {
+		if (i<2) {
+			from = '#ff0000';
+			to = '#ffff00';
+			colr = shadeBlendConvert(i/2, from, to)
+		} else if (i<4) {
+			from = '#ffff00';
+			to = '#00ff00';
+			colr = shadeBlendConvert((i-2)/2, from, to)
+		} else if (i<6) {
+			from = '#00ff00';
+			to = '#00ffff';
+			colr = shadeBlendConvert((i-4)/2, from, to)
+		} else if (i<8) {
+			from = '#00ffff';
+			to = '#0000ff';
+			colr = shadeBlendConvert((i-6)/2, from, to)
+		} else if (i<10) {
+			from = '#0000ff';
+			to = '#ff00ff';
+			colr = shadeBlendConvert((i-8)/2, from, to)
+		} else {
+			from = '#ff00ff';
+			to = '#ff0000';
+			colr = shadeBlendConvert((i-10)/2, from, to)
+		}
+		RBOW.push(colr)
+	}
+}
