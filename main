@@ -297,3 +297,56 @@ function drawFinalPolys(alt, lines) {
 	}
 	pop()
 }
+function drawOuterPolys(alt, lines) {
+	push()
+	let odd = false
+	if (!lines) {
+		noStroke()
+	} else {
+		stroke(PAL[11])
+		strokeWeight(SIZE[2])
+	}
+	fill(PAL[4])
+	a = 49 ; b = 73 ; c = 37 ; d = 61 ; e = 27 ; f = 74
+	for (let i=0; i<12; i++) {
+		if (alt && odd) {
+			fill(PAL[5])
+		} else {
+			fill(PAL[4])
+		}
+		odd = !odd
+		Q = []
+		Q.push(P[a])
+		Q.push(P[b])
+		Q.push(P[c])
+		Q.push(P[d])
+		Q.push(P[e])
+		Q.push(P[f])
+		Q.push(P[a])
+		filledPoly(Q)
+		a = (a==60) ? 49 : a+=1
+		b = (b==84) ? 73 : b+=1
+		c = (c==48) ? 37 : c+=1
+		d = (d==72) ? 61 : d+=1
+		e = (e==36) ? 25 : e+=1
+		f = (f==84) ? 73 : f+=1
+	}
+	pop()
+}
+
+function drawMidPolys(alt, lines) {
+	push()
+	let odd = false
+	if (!lines) {
+		noStroke()
+	} else {
+		stroke(PAL[11])
+		strokeWeight(SIZE[2])
+	}
+	a = 13 ; b = 60 ; c = 73 ; d = 49
+	for (let i=0; i<12; i++) {
+		if (alt && odd) {
+			fill(PAL[7])
+		} else {
+			fill(PAL[6])
+		}
