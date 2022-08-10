@@ -350,3 +350,66 @@ function drawMidPolys(alt, lines) {
 		} else {
 			fill(PAL[6])
 		}
+odd = !odd
+		Q = []
+		Q.push(P[a])
+		Q.push(P[b])
+		Q.push(P[c])
+		Q.push(P[d])
+		Q.push(P[a])
+		filledPoly(Q)
+		a = (a==24) ? 13 : a+=1
+		b = (b==60) ? 49 : b+=1
+		c = (c==84) ? 73 : c+=1
+		d = (d==60) ? 49 : d+=1
+	}
+	pop()
+}
+
+function drawInnerPolys(alt, lines) {
+	push()
+	let odd = false
+	if (!lines) {
+		noStroke()
+	} else {
+		stroke(PAL[11])
+		strokeWeight(SIZE[2])
+	}
+	a = 13 ; b = 49 ; c = 14 
+	for (let i=0; i<12; i++) {
+		if (alt && odd) {
+			fill(PAL[9])
+		} else {
+			fill(PAL[8])
+		}
+		odd = !odd
+		Q = []
+		Q.push(P[0])
+		Q.push(P[a])
+		Q.push(P[b])
+		Q.push(P[c])
+		Q.push(P[0])
+		filledPoly(Q)
+		a = (a==24) ? 13 : a+=1
+		b = (b==60) ? 49 : b+=1
+		c = (c==24) ? 13 : c+=1
+	}
+	pop()
+}
+
+function makePoints(x, y, drawPins, drawLines) {
+	let CX = x
+	let CY = y
+	P = []
+	let p = new createVector(x,y)
+	P.push(p)
+	
+	ellipse( CX, CY, SIZE * 25)
+	ellipse( CX, CY, SIZE * 24)
+
+	// large circle points
+	for (let i=0; i<12; i++) {
+		p = makePoint(CX, CY, i*30, SIZE[1]/2)
+		P.push(p)
+		if (drawPins) pin(p.x, p.y)
+	}
