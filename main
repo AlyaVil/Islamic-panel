@@ -413,3 +413,54 @@ function makePoints(x, y, drawPins, drawLines) {
 		P.push(p)
 		if (drawPins) pin(p.x, p.y)
 	}
+if (drawLines) {
+		drawOuterLines(P[1], P[4], P[7], P[10])
+		drawOuterLines(P[2], P[5], P[8], P[11])
+		drawOuterLines(P[3], P[6], P[9], P[12])
+	}
+	
+	// small circle points
+	ellipse( CX, CY, SIZE * 5)
+	for (let i=0; i<12; i++) {
+		p = makePoint(CX, CY, i*30, SIZE[0]/2)
+		P.push(p)
+		if (drawPins) pin(p.x, p.y)
+	}
+	
+	// points around the three squares
+	let q = new createVector(0,0)
+	
+	let a = 13 ; let b = 16 ; let c = 11 ; let d = 2
+
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(P[a], P[b], P[c], P[d]); 
+		P.push(q); 
+		if (drawPins) pin(q.x, q.y)
+		a = (a==24) ? 13 : a+=1
+		b = (b==24) ? 13 : b+=1
+		c = (c==12) ? 1 : c+=1
+		d = (d==12) ? 1 : d+=1
+	}
+
+	a = 21 ; b = 24 ; c = 11 ; d = 2
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(P[a], P[b], P[c], P[d]);
+  	P.push(q);
+		if (drawPins) pin(q.x, q.y)
+		a = (a==24) ? 13 : a+=1
+		b = (b==24) ? 13 : b+=1
+		c = (c==12) ? 1 : c+=1
+		d = (d==12) ? 1 : d+=1
+	}
+	
+	stroke('cyan')
+	if (drawLines) {
+		a = 13 ; b = 38 ; c = 25
+		for (let i=0; i<12; i++) {
+			lineDraw(P[a], P[b])
+			lineDraw(P[a], P[c])
+			a+=1
+			b = (b==48) ? 37 : b+=1
+			c+=1
+		}
+	}
