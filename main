@@ -518,3 +518,69 @@ function pin(x,y) {
 function pinPt(p) {
 	ellipse(p.x,p.y,5,5)
 }
+// draw a set of twelve points
+function draw12(n) {
+	push()
+	fill('red')
+		// draw all points in yellow
+	for (let i=0; i<M.length; i++) {
+		stroke('yellow')
+		pinPt(M[i])
+	}
+	// draw viewed points in red
+	for (let i=0; i<12; i++) {
+		stroke('red')
+		pinPt(M[n*12+1+i])
+	}
+	// highlight first in circle
+	fill('cyan')
+	stroke('cyan')
+	pinPt(M[n*12+1])
+	pop()
+}
+
+
+
+// draw boxes with one selected
+function drawBoxes (n) {
+	push()
+	for (let i=0; i<boxes; i++) {
+		noFill()
+		if (i == n) {
+			stroke('yellow')
+		} else {
+			stroke('cyan')
+		}
+		rect(boxLeft+i*boxSize, boxTop, boxSize, boxSize/2)
+		noFill()
+		if (i == n) {
+			fill('yellow')
+		} else {
+			fill('cyan')
+		}
+		text('' + (i*12+1) + ' to ' + (i*12+12), boxLeft+i*boxSize + 12, boxTop + 26);
+	}
+	pop()
+}
+	
+function drawSliders() {
+	push()
+	noStroke()
+	fill(0,0,80)
+	rect(sliderLeft, sliderTop - 10 , sliderWidth*3, sliderHeight + 50)
+	stroke('yellow')
+	if (drawLines) {
+		fill('green') 
+	} else {
+		fill('red') 
+	}
+	ellipse(sliderLeft + 2.5 * sliderWidth, sliderTop - sliderWidth, sliderWidth)
+	for (let i=0; i<sliders; i++) {
+		fill(0,0,80)
+		rect(sliderLeft+i*sliderWidth, sliderTop, sliderWidth, sliderHeight)
+		ellipse(sliderLeft+i*sliderWidth + sliderWidth/2, sliderTop + (sliderHeight * (100-S[i])/100), 12)
+		fill('yellow')
+		text(SIZE[i], sliderLeft+i*sliderWidth + sliderWidth/4, sliderTop + sliderHeight + 30)
+	}
+	pop()
+}
