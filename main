@@ -584,3 +584,57 @@ function drawSliders() {
 	}
 	pop()
 }
+function makeByNumber(x, y, s) {
+	let CX = x
+	let CY = y
+	let SIZE = s
+	let p = new createVector(0,0)
+	M.push(p)
+	
+	ellipse( CX, CY, SIZE * 25)
+	ellipse( CX, CY, SIZE * 24)
+
+	// large circle points
+	for (let i=0; i<12; i++) {
+		p = makePoint(CX, CY, i*30, SIZE * 12)
+		M.push(p)
+		pin(p.x, p.y)
+	}
+	drawOuterLines(M[1], M[4], M[7], M[10])
+	drawOuterLines(M[2], M[5], M[8], M[11])
+	drawOuterLines(M[3], M[6], M[9], M[12])
+
+	// small circle points
+	ellipse( CX, CY, SIZE * 5)
+	for (let i=0; i<12; i++) {
+		p = makePoint(CX, CY, i*30, SIZE * 2.5)
+		M.push(p)
+		pin(p.x, p.y)
+	}
+	
+	// points around the three squares
+	let q = new createVector(0,0)
+	
+	let a = 13 ; let b = 16 ; let c = 11 ; let d = 2
+
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(M[a], M[b], M[c], M[d]); 
+		 M.push(q); pin(q.x, q.y)
+//		println(a + " " + b + " " + c + " " + d + " " + q.x + " " + q.y)
+		a = (a==24) ? 13 : a+=1
+		b = (b==24) ? 13 : b+=1
+		c = (c==12) ? 1 : c+=1
+		d = (d==12) ? 1 : d+=1
+	}
+
+	a = 21 ; b = 24 ; c = 11 ; d = 2
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(M[a], M[b], M[c], M[d]);
+		 M.push(q); pin(q.x, q.y)
+	//	println(q.x + " " + q.y)
+		a = (a==24) ? 13 : a+=1
+		b = (b==24) ? 13 : b+=1
+		c = (c==12) ? 1 : c+=1
+		d = (d==12) ? 1 : d+=1
+	}
+	
