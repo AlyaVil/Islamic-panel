@@ -638,3 +638,52 @@ function makeByNumber(x, y, s) {
 		d = (d==12) ? 1 : d+=1
 	}
 	
+stroke('cyan')
+	a = 13 ; b = 38 ; c = 25
+	for (let i=0; i<12; i++) {
+		lineDraw(M[a], M[b])
+		lineDraw(M[a], M[c])
+		a+=1
+		b = (b==48) ? 37 : b+=1
+		c+=1
+	}
+	
+	a = 13 ; b = 38 ; c = 14 ; d = 26
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(M[a], M[b], M[c], M[d]);
+  	M.push(q); pin(q.x, q.y)
+		a = (a==24) ? 13 : a+=1
+		b = (b==48) ? 37 : b+=1
+		c = (c==24) ? 13 : c+=1
+		d = (d==36) ? 25 : d+=1
+	}
+
+	a = 11 ; b = 2 ; c = 1 ; d = 4
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(M[a], M[b], M[c], M[d]);
+  	M.push(q); pin(q.x, q.y)
+		a = (a==12) ? 1 : a+=1
+		b = (b==12) ? 1 : b+=1
+		c = (c==12) ? 1 : c+=1
+		d = (d==12) ? 1 : d+=1
+	}
+	
+  stroke('pink')
+	
+	lineDraw(M[11], M[2])
+	lineDraw(M[1], M[4])
+	
+	stroke('cyan')
+
+
+	a = 24 ; b = 37 ; c = 14 ; d = 26
+	for (let i=0; i<12; i++) {
+		q = lineIntersection(M[a], M[b], M[c], M[d]);
+  	M.push(q); pin(q.x, q.y)
+		a = (a==24) ? 13 : a+=1
+		b = (b==48) ? 37 : b+=1
+		c = (c==24) ? 13 : c+=1
+		d = (d==36) ? 25 : d+=1
+	}
+	
+}
