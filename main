@@ -687,3 +687,52 @@ stroke('cyan')
 	}
 	
 }
+function makePoint( cx, cy, angle, radius) {
+	let x = radius*cos(angle)
+	let y = radius*sin(angle)
+	return new createVector( cx + x, cy + y)
+}
+
+function makeByEye(x,y,s) {
+	let CX = x
+	let CY = y
+	let SIZE = s
+	
+	for (let i=0; i<12; i++) {
+		drawStart(i*30, CX, CY)
+		drawAngleLine(0, 2 * SIZE)
+		drawAngleLine(45, SIZE)
+		drawAngleLine(120, SIZE)
+		drawAngleLine(45, 2 * SIZE)
+	}	
+	
+	for (let i=0; i<12; i++) {
+		drawStart(i*30, CX, CY)
+		moveAngleLine(0, SIZE * 2.1)
+		drawAngleLine(45, SIZE)
+		drawAngleLine(-60, 2.7 * SIZE)
+		drawAngleLine(-149, 2.7 * SIZE)
+		drawAngleLine(-60, SIZE)
+	}
+	
+	for (let i=0; i<12; i++) {
+		drawStart(i*30 + 15, CX, CY)
+		moveAngleLine(0, SIZE * 3.1)
+		drawAngleLine(30, 2.7 * SIZE)
+		drawAngleLine(-30, 0.9 * SIZE)
+		drawAngleLine(-60, 1.6 * SIZE)
+		drawAngleLine(-60, 1.6 * SIZE)
+		drawAngleLine(-60, 0.9 * SIZE)
+		drawAngleLine(-30, 2.7 * SIZE)
+	}
+	
+	for (let i=0; i<12; i++) {
+		drawStart(i*30, CX, CY)
+		moveAngleLine(0, SIZE * 5.8)
+		drawAngleLine(15, 0.8 * SIZE)
+		drawAngleLine(60, 1.6 * SIZE)
+		drawAngleLine(-120, 2.5 * SIZE)
+		drawAngleLine(-90, 2.5 * SIZE)
+		drawAngleLine(-120, 1.6 * SIZE)
+		drawAngleLine(60, 0.8 * SIZE)
+	}
