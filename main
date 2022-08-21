@@ -736,3 +736,56 @@ function makeByEye(x,y,s) {
 		drawAngleLine(-120, 1.6 * SIZE)
 		drawAngleLine(60, 0.8 * SIZE)
 	}
+	pin(CX, CY)
+	noFill()
+	stroke('yellow')
+	ellipse(CX, CY, 4 * SIZE)	
+	ellipse(CX, CY, 6 * SIZE)	
+	ellipse(CX, CY, 11 * SIZE)	
+	ellipse(CX, CY, 13 * SIZE)	
+	ellipse(CX, CY, 14.5 * SIZE)	
+	ellipse(CX, CY, 17.5 * SIZE)	
+	
+}
+
+function drawStart(a, x, y) {
+	sa = a
+	sx = x
+	sy = y
+}
+
+function lineDraw(p1, p2) {
+	line(p1.x, p1.y, p2.x, p2.y)	
+}
+
+// draw line at angle aa, dist dd, from current vector posiiton
+// update sx, sy sa to the end value
+function drawAngleLine(angle, distance) {
+  	sa = sa + angle;
+  	tx = sx + distance * cos(sa);
+  	ty = sy + distance * sin(sa);
+//  print(sx + ',' + sy + ' to ' + tx + ',' + ty + ', at ' + sa)
+  	line(sx, sy, tx, ty);
+    sx=tx;
+    sy=ty;
+}
+
+function moveAngleLine(angle, distance) {
+  	sa = sa + angle;
+  	sx = sx + distance * cos(sa);
+  	sy = sy + distance * sin(sa);
+}
+
+function drawPoly(PP) {
+	for (var i=1; i<PP.length; i++) {
+			line(PP[i-1].x, PP[i-1].y, PP[i].x, PP[i].y)
+	}
+}
+
+function filledPoly(PP) {
+	beginShape();
+	for (var i=1; i<PP.length; i++) {
+		vertex(PP[i].x, PP[i].y);
+	}
+	endShape(CLOSE);
+}
