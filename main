@@ -789,3 +789,55 @@ function filledPoly(PP) {
 	}
 	endShape(CLOSE);
 }
+function drawOuterLines(p1, p2, p3, p4) {
+	line(p1.x, p1.y, p2.x, p2.y)
+	line(p2.x, p2.y, p3.x, p3.y)
+	line(p3.x, p3.y, p4.x, p4.y)
+	line(p4.x, p4.y, p1.x, p1.y)
+}
+
+function lineIntersection(p1, p2, p3, p4) {
+    // if the lines intersect, the result contains the x and y of the intersection (treating the lines as infinite) and booleans for whether line segment 1 or line segment 2 contain the point
+    var denominator, a, b, numerator1, numerator2
+		let result = new createVector(0,0)
+		
+    denominator = ((p4.y - p3.y) * (p2.x - p1.x)) - ((p4.x - p3.x) * (p2.y - p1.y));
+    if (denominator == 0) {
+        return result;
+    }
+    a = p1.y - p3.y;
+    b = p1.x - p3.x;
+    numerator1 = ((p4.x - p3.x) * a) - ((p4.y - p3.y) * b);
+    numerator2 = ((p2.x - p1.x) * a) - ((p2.y - p1.y) * b);
+    a = numerator1 / denominator;
+    b = numerator2 / denominator;
+
+    // if we cast these lines infinitely in both directions, they intersect here:
+    result.x = p1.x + (a * (p2.x - p1.x));
+    result.y = p1.y + (a * (p2.y - p1.y));
+    /*
+        // it is worth noting that this should be the same as:
+        x = p3.x + (b * (p4.x - p3.x));
+        y = p3.y + (b * (p4.y - p3.y));
+		*/
+	/*
+    // if line1 is a segment and line2 is infinite, they intersect if:
+    if (a > 0 && a < 1) {
+        result.onLine1 = true;
+    }
+    // if line2 is a segment and line1 is infinite, they intersect if:
+    if (b > 0 && b < 1) {
+        result.onLine2 = true;
+    }
+	*/
+    // if line1 and line2 are segments, they intersect if both of the above are true
+    return result;
+};
+
+function slope(P1, P2) {
+	if ((p2.x - p1.x) < .00001) 
+		return 10000
+	else {
+		return (p2.y - p1.y)/(p2.x - p1.x)
+	}
+}
