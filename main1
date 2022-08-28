@@ -841,3 +841,11 @@ function slope(P1, P2) {
 		return (p2.y - p1.y)/(p2.x - p1.x)
 	}
 }
+// return true if line is vertical, or close to
+function vertical(P1, P2) {
+	if ((p2.x - p1.x) < .00001) 
+		return true
+	else {
+		return false
+	}
+}
